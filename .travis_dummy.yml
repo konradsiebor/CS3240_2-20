@@ -1,0 +1,14 @@
+language: python
+python:
+- '3.8'
+install:
+- pip install -r requirements.txt
+script:
+- python manage.py test
+deploy:
+  provider: heroku
+  api_key:
+    secure: LaBnq6BAxuDyCSvfCLlBmB3aKmsT3WwzBWZRtTlWv9BpuwZi/mloOalBhKKrtXNcFwEEAraKTaMTFnPTpt8cBwr/IEIbkPnjWARZErccy3N6n3jGdc6kok2k/ybBWd8+3aztYJDopAR7lpNyEH4Ukxa1xUE7I2m8BY0mjWMeYTH6EDP5D6sOaMmyAi6VCKW/CNlPMTA9b4boy6gP9X60ADJcy354Xtn/mESym7mr80ral7NC6KyDH5njJO17ZwQET05kwXpBSdecBEIAp0DGgVtMgpvtcVCW1XHnZ8Qouj68INLLREsE2TPgJSzvUVN4pE7v9iJKGcn3QLtnHsJ9IwzMnuSr7HgN98fA0x0isBQPlAr7LmeLGtbStcBFV8BV45b44+dhasyOeQUwV4wjKRiILatkI59gHhw1+kW/J4YMKEBrs+yNhql8cwc8v84nMgEDAKgXJUftXVgAng517v7xN7bCIGU9Z6YEzinyc8HTCZIoPFpBJA7idDE8YIy5qX8UKvs6IeLs1alKxei/XC1kKSl71neKvftI3SaPpR78GNnERj6VXf44hHJXubQ6Gh0O3Bt1rltNtvVCyraSD7FJSmhzm69PuTGli0nHDy5UTJILpQeBOxycpxwoSkz2EbQckZe3pfqWl9CEgpTwJPYL4wuHeQZocMbrzhktAsk=
+  app: project-2-20
+  on:
+    repo: uva-cs3240-f20/project-2-20

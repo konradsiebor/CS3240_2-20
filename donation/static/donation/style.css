@@ -1,0 +1,12 @@
+#signout-link{
+    display: none;
+}
+
+.navbar-nav > li{
+    padding-left:10px;
+    margin: auto;
+  }
+
+  #user-photo{
+      max-height: 40px;
+  }

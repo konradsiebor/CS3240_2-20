@@ -1,0 +1,84 @@
+{% load static %} {% load bootstrap4 %} {% bootstrap_css %} {% bootstrap_javascript jquery='full' %}
+
+{% load socialaccount %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-light">
+  <a class="navbar-brand" href="/donation/" style="color: grey">MICRO-DONATION</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/donation" style="color: grey">Home</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" style="color: grey">
+          Donations
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/donation/create" style="color: grey">Create a Donation</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/donation/list" style="color: grey">View all donations</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/donation/leaderboard" style="color: grey">Leaderboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/donation/profile" style="color: grey">Profile</a>
+      </li>
+    </ul>
+  </div>
+
+
+  <ul class="nav navbar-nav navbar-right">
+    {% if user.is_authenticated %}
+    <li id="user-basic">
+      <div class="navbar-text" id="user-basic-info" style="margin-right: 20px; color: black">Logged in as: {{ user.username }}</div>
+    </li>
+    <li id="signout-link"></li>
+    <form method="post" action="{% url 'account_logout' %}" style="margin:auto;">
+      {% csrf_token %}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button class="btn btn-primary navbar-btn" onclick="signOut();">Sign
+        out</button>
+    </form>
+    </li>
+
+    {% else %}
+    <li id="signin-button">
+      <a href="{% provider_login_url 'google' %}"><button class="btn btn-primary navbar-btn" onclick="signIn();">Sign
+          in</button></a>
+      <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+
+<html lang="en">
+
+<body>
+  <div id="content"></div>
+</body>
+
+</html>
+<script>
+  function signOut() {
+    $("#signin-button").show();
+    $("#signout-link").hide();
+  }
+</script>
+
+{% block content %}{% endblock %}
+
+<footer style="position:absolute; bottom:0; width:100%;" class="py-4 bg-light text-white-50">
+  <div class="container" style="width:100%; text-align: center;">
+    <span class="text-muted">&copy; 2020 Team 2-20</span>
+  </div>
+</footer>

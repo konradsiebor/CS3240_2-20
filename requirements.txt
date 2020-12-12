@@ -1,0 +1,10 @@
+Django
+gunicorn
+django-heroku
+django-bootstrap4
+pillow
+requests
+google-auth
+django-allauth
+django-filter
+psycopg2
